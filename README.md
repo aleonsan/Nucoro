@@ -29,6 +29,10 @@ Al tratarse de una prueba, la he realizado usando sqlite para compartir la base 
 - 7 backoffice/       Backoffice demandado en el test.
 
 
+### Instrucciones BackOffice
+Los archivos para los que he diseñado el BackOffice son los JSON que devuelve exchangeratesapi.io en su endpoint history. De esta forma, y pese a que he incluido dentro de currencyApp en la carpeta test_files un fichero para probar, se puede realizar la prueba descargando cualquier JSON de la API que he especificado y cargándolo en formulario correspondiente en el BackOffice.
+
+
 ### Mejoras propuestas sobre lo desarrollado
 - Podría haber realizado una subclase de APIView e introducir allí la verificación de parámetros, por ejemplo, y despues usar esta subclase para desarrollar las APIs en vez de incluir la verificación de parámetros cada vez para de esta forma ahorrar y reutilizar código.
 - Debería haber incluido verificación del formato en el que se introducen las fechas que van en los parámetros get.
@@ -36,5 +40,6 @@ Al tratarse de una prueba, la he realizado usando sqlite para compartir la base 
 
 ### Mejoras propuestas para la aplicación
 - En el modelo Currency, al ser el code único se podría usar como pk y así tendríamos el code también como un index.
-- En el get_exchange_rate_data, no he incluido el exchanged_currency, ya que he considerado que lo óptimo sería hacer consultar la API de fixer obteniendo los datos de todas las Currency que tenemos guardadas, ya que con algunos cálculos de esta forma rellenamos la tabla realizando menos llamadas a la API.
-- El endpoint historical que es la que he entendido que hay que usar en el test de entre las 2 gratuitas disponibles, tiene la limitación de consultar una fecha por llamada, lo cual hace que tengamos que realizar muchas llamadas a la misma. 
+- En el get_exchange_rate_data, no he incluido el exchanged_currency, ya que he considerado que lo óptimo sería hacer la consulta a la API de fixer obteniendo los datos de todas las Currency que tenemos guardadas, ya que con algunos cálculos de esta forma rellenamos la tabla realizando menos llamadas a la API.
+- El endpoint historical que es la que he entendido que hay que usar en el test de entre las 2 gratuitas disponibles, tiene la limitación de consultar una fecha por llamada, lo cual hace que tengamos que realizar muchas llamadas a la misma.
+- En el caso de los Provider, lo he realizado basándome en lo que he visto dentro del ejercicio, es decir, tanto fixer.io como exchangeratesapi.io devuelven más o menos los mismos datos, de forma que he considerado solo un endpoint a usar puesto que para la realización del mismo no he visto la necesidad de usar otros (el de latest, aunque presenta valores actualizados al momento, no he visto la necesidad de usarlo, puesto que con el historical y usando la fecha, ya me devolvía un valor aunque no estuviera 100% actualizado). De esta forma, en el caso de realizar esto para producción y estudiando otros proveedores probablemente hubiera escogido otra opción, como incluir un JsonField en el Provider donde especificara un diccionario que parseándolo nos proporcionara acceso a los diferentes endpoints, los parámetros que aceptaría cada uno y demás. De esta forma, podríamos configurar completamente los diferentes proveedores con sus diferentes endpoints y la forma en que devuelven los datos directamente desde el administrador de Django por ejemplo.
