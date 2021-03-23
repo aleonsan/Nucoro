@@ -18,6 +18,10 @@ import json
 # Create your views here.
 
 
+def index(request):
+    return HttpResponse('Hola Mundo')
+
+
 @api_view(['GET'])
 def mockdata(request, year, month, day):
     if request.method == 'GET':

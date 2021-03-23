@@ -24,6 +24,7 @@ from django.contrib.auth import views as auth_views
 from .views import *
 
 urlpatterns = [
+    path('', index),
     path('mockdata/<int:year>-<int:month>-<int:day>', mockdata),
     path('timeseries/', timeseries.as_view()),
     path('timeseries2/', timeseries2.as_view()),
