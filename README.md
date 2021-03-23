@@ -5,17 +5,28 @@ Proyecto para entrevista laboral.
 ### Instrucciones instalación:
 Al tratarse de una prueba, la he realizado usando sqlite para compartir la base de datos con datos ya introducidos de manera más simple, puesto que al no ser para algo que va a usarse en producción, las limitaciones que tiene sqlite no van a afectar. De esta forma las instrucciones para montar el proyecto van a ir igualmente dadas para el objetivo de usarlo utilizando el servidor de desarrollo que Django incorpora:
 
-https://github.com/lskyr3l/Nucoro.git
+- Creamos carpeta donde queremos poner el proyecto y accedemos a ella.
+- Clonamos el repositorio dentro de esa carpeta: git clone https://github.com/lskyr3l/Nucoro.git
+- Accedemos a la carpeta Nucoro.
+- Generamos el entorno virtual y le instalamos las dependencias django, requests y djangorestframework. En mi caso utilizo pipenv, por lo tanto lo hago de la siguiente forma:
+    - pipenv install
+    - pipenv install requests
+    - pipenv install django
+    - pipenv install djangorestframework
+    - pipenv shell (para acceder al venv)
+- Entramos en la carpeta NucoroCurrencyDjango.
+- Activamos el servidor de desarrollo: python manage.py runserver
+- El mismo terminal nos proporcionará donde podemos consultar la aplicación.
 
 
 ### Listado de urls:
-1 admin/        Administrador de Django -- User: admin -- Pass: istrador
-2 mockdata/<int:year>-<int:month>-<int:day>     Api que proporciona datos aleatorios.
-3 timeseries/       Primera API a desarrollar en el test.
-4 timeseries2/      Primera API a desarrollar en el test, versión realizada usando vistas genéricas y serializers. No recoge datos en caso de que no los haya. El resultado obtenido pese a ser parecido, no es el óptimo a obtener.
-5 calculator/       Segunda API a desarrollar en el test.
-6 time_weighted_rate/       Tercera API a desarrollar en el test.
-7 backoffice/       Backoffice demandado en el test.
+- 1 admin/        Administrador de Django -- User: admin -- Pass: istrador
+- 2 mockdata/<int:year>-<int:month>-<int:day>     Api que proporciona datos aleatorios.
+- 3 timeseries/       Primera API a desarrollar en el test.
+- 4 timeseries2/      Primera API a desarrollar en el test, versión realizada usando vistas genéricas y serializers. No recoge datos en caso de que no los haya, por lo que solo muestra datos guardados en la base de datos. El resultado obtenido pese a ser parecido, no es el óptimo a obtener, aunque ya que lo estuve haciendo, consideré interesante incluirlo debido a que hay que entender bastante bien como funcionan las clases y django restframework para obtener un resultado similar.
+- 5 calculator/       Segunda API a desarrollar en el test.
+- 6 time_weighted_rate/       Tercera API a desarrollar en el test.
+- 7 backoffice/       Backoffice demandado en el test.
 
 
 ### Mejoras propuestas sobre lo desarrollado
