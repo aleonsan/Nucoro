@@ -1,4 +1,4 @@
-# NecoroCurrency
+# NucoroCurrency
 
 Proyecto para entrevista laboral.
 
