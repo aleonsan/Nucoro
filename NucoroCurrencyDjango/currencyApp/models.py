@@ -1,11 +1,9 @@
 from django.db import models
 from django.core.validators import MaxValueValidator, MinValueValidator
 
-import requests
+from loggin import getLogger
 
-import itertools
-
-# Create your models here.
+logger = getLogger(__name__)
 
 
 class Provider(models.Model):
@@ -33,7 +31,7 @@ class Provider(models.Model):
         """ Here your adapter is imported and injected into your entity
             Depending on your policy you could choose between:
             1. inject adapter as external parameter "adapter_path" (its kind of odd)
-            2. get provider's path field (could have restrictions if field is not model properly) 
+            2. get provider's path field (could have restrictions if field is not model properly)
             3. infere adapter_path from your provider's code
         """
         # this code should be cleaner/more resilient and placed into a mixin that would be injected in your model(s)
@@ -68,7 +66,7 @@ class CurrencyExchangeRate(models.Model):
     exchanged_currency = models.ForeignKey(
         'Currency',
         related_name='exchanged_currency',
-        on_delete = models.CASCADE
+        on_delete=models.CASCADE
     )
     valuation_date = models.DateField(db_index=True)
     rate_value = models.DecimalField(
@@ -83,17 +81,10 @@ class CurrencyExchangeRate(models.Model):
     # - into provider method (if not coupled to certain implementation)
 
 
-
-
 class Currency(models.Model):
-    code = models.CharField(max_length=3, unique=True)#This could be used as pk
+    code = models.CharField(max_length=3, unique=True)  # This could be used as pk
     name = models.CharField(max_length=20, db_index=True)
     symbol = models.CharField(max_length=10)
 
     def __str__(self):
         return self.code
-
-
-
-
-    
